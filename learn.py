@@ -31,12 +31,22 @@ def check(response, df):
             break
     if temp == 0:
         printy("That's not right. The correct answer is...\n")
-        for a in range(len(df)-1):
-            printy(df[a] + ", ")
-        printy(df[len(df)-1], "\n")
+        printy(toString(df))
         time.sleep(1)
 
+def toString(word):
+    printer = ""
+    printer += word[0]
+    for a in range(1, len(word)):
+        if word[a] != "(":
+            printer += ", " + word[a]
+        else:
+            a += 1
+            printer += " (" + word[a] + ")"
 
+            
+    printer += "\n"
+    return printer
 
 
 
@@ -48,7 +58,7 @@ while True:
     try:
         with open(fileName, "r") as a_file:
             for line in a_file:
-                strippedLine = line.strip().replace(" (", ", (")
+                strippedLine = line.strip().replace(" (", ", (, ").replace(")", "")
                 splitLine = re.split(", |; ", strippedLine)
                 if a == 0:
                     tempWord = splitLine
@@ -85,11 +95,7 @@ for i in range(3):
         visited.remove(visited[num])
 
         print("\n")
-        printer = ""
-        for a in range(len(word)-1):
-            printer += word[a] + ", "
-        printer += word[len(word)-1] + "\n"
-        printy(printer)
+        printy(toString(word))
         
         if i == 0 & len(visited) != 1:
             time.sleep(.2)
@@ -102,12 +108,8 @@ for i in range(3):
             
             randStart = random.randint(0, 3)
             for a in range(4):
-                printer = "    "
                 randWord = vocab[randList[(randStart+a)%4]][1]
-                for b in range(len(randWord)-1):
-                    printer += randWord[b] + ", "
-                printer += randWord[len(randWord)-1] + "\n"
-                printy(printer)
+                printy(toString(randWord))
 
         
         printy("Please input the definition")
