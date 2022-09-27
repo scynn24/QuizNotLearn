@@ -39,6 +39,8 @@ def check(response, df):
 
 
 
+
+
 while True:
     printy("Choose a set")
     fileName = input(": ")
@@ -46,8 +48,8 @@ while True:
     try:
         with open(fileName, "r") as a_file:
             for line in a_file:
-                strippedLine = line.strip()
-                splitLine = re.split(", |; |\(|\)| \(", strippedLine)
+                strippedLine = line.strip().replace(" (", ", (")
+                splitLine = re.split(", |; ", strippedLine)
                 if a == 0:
                     tempWord = splitLine
                 else:
