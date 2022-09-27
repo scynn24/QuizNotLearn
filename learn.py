@@ -6,7 +6,16 @@ vocab = []
 a = 0
 tempWord = []
 
-fileName = "ceasar4.in"
+
+def printy(printer):
+    for char in printer:
+        if char != "\n":
+            print(char, end = '', flush = True)
+            time.sleep(.05)
+        else:
+            print(char, end = '', flush = True)
+            time.sleep(.07)
+    time.sleep(.07)
 
 def check(response, df):
     temp = 0
@@ -27,15 +36,26 @@ def check(response, df):
         print(df[len(df)-1])
         time.sleep(1)
 
-with open(fileName, "r") as a_file:
-    for line in a_file:
-        strippedLine = line.strip()
-        splitLine = re.split(", |; |\(|\)| \(", strippedLine)
-        if a == 0:
-            tempWord = splitLine
-        else:
-            vocab.append((tempWord, splitLine))
-        a = (a+1)%2
+
+
+
+while True:
+    printy("Choose a set")
+    fileName = input(": ")
+
+    try:
+        with open(fileName, "r") as a_file:
+            for line in a_file:
+                strippedLine = line.strip()
+                splitLine = re.split(", |; |\(|\)| \(", strippedLine)
+                if a == 0:
+                    tempWord = splitLine
+                else:
+                    vocab.append((tempWord, splitLine))
+                a = (a+1)%2
+        break
+    except FileNotFoundError:
+        printy("That is not a valid file\n")
 
 
 
@@ -63,13 +83,15 @@ for i in range(3):
         visited.remove(visited[num])
 
         print("\n")
+        printer = ""
         for a in range(len(word)-1):
-            print(word[a] + ", ", end="")
-        print(word[len(word)-1])
+            printer += word[a] + ", "
+        printer += word[len(word)-1] + "\n"
+        printy(printer)
         
         if i == 0 & len(visited) != 1:
             time.sleep(.2)
-            print("Is it...")
+            printy("Is it...\n")
             time.sleep(.2)
             randList[0] = randInt
             for a in range(1, 4):
@@ -78,15 +100,15 @@ for i in range(3):
             
             randStart = random.randint(0, 3)
             for a in range(4):
-                print("    ", end = "")
+                printer = "    "
                 randWord = vocab[randList[(randStart+a)%4]][1]
                 for b in range(len(randWord)-1):
-                    print(randWord[b] + ", ", end="")
-                    time.sleep(.2)
-                print(randWord[len(randWord)-1])
+                    printer += randWord[b] + ", "
+                printer += randWord[len(randWord)-1] + "\n"
+                printy(printer)
 
-        time.sleep(.3)
-        print("Please input the definition", end = "")
+        
+        printy("Please input the definition")
         response = input(": ")
         
         check(response, df)
@@ -94,6 +116,7 @@ for i in range(3):
         if len(visited) == 0:
             break
         
-    cont = input("Do you want to continue (Y/N): ")
+    printy("Do you want to continue (Y/N)")
+    cont = input(": ")
     if cont.lower() == "n":
         break
