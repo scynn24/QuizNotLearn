@@ -11,11 +11,11 @@ def printy(printer):
     for char in printer:
         if char != "\n":
             print(char, end = '', flush = True)
-            time.sleep(.05)
+            time.sleep(.03)
         else:
             print(char, end = '', flush = True)
-            time.sleep(.07)
-    time.sleep(.07)
+            time.sleep(.05)
+    time.sleep(.05)
 
 def check(response, df):
     temp = 0
