@@ -20,6 +20,7 @@ def printy(printer):
 def check(response, df):
     temp = 0
     for thing in df:
+        response = response.replace(" (", ", ").replace(")", "")
         responseList = response.split(", ")
         for thingy in responseList:
             if thingy.lower() == thing.lower():
@@ -31,18 +32,23 @@ def check(response, df):
             break
     if temp == 0:
         printy("That's not right. The correct answer is...\n")
-        printy(toString(df))
+        printy(toString(df, False))
         time.sleep(1)
 
-def toString(word):
-    printer = ""
+def toString(word, t):
+    if t:
+        printer = "    "
+    else:
+        printer = ""
     printer += word[0]
-    for a in range(1, len(word)):
+    a = 1
+    while a < len(word):
         if word[a] != "(":
             printer += ", " + word[a]
         else:
             a += 1
             printer += " (" + word[a] + ")"
+        a += 1
 
             
     printer += "\n"
@@ -95,12 +101,12 @@ for i in range(3):
         visited.remove(visited[num])
 
         print("\n")
-        printy(toString(word))
+        printy(toString(word, False))
         
         if i == 0 & len(visited) != 1:
-            time.sleep(.2)
+            time.sleep(.06)
             printy("Is it...\n")
-            time.sleep(.2)
+            time.sleep(.06)
             randList[0] = randInt
             for a in range(1, 4):
                 newRand = random.randint(0, len(visited)-1)
@@ -109,7 +115,7 @@ for i in range(3):
             randStart = random.randint(0, 3)
             for a in range(4):
                 randWord = vocab[randList[(randStart+a)%4]][1]
-                printy(toString(randWord))
+                printy(toString(randWord, True))
 
         
         printy("Please input the definition")
