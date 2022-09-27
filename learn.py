@@ -23,17 +23,17 @@ def check(response, df):
         responseList = response.split(", ")
         for thingy in responseList:
             if thingy.lower() == thing.lower():
-                print("You got the right answer!!\n")
+                printy("You got the right answer!!\n")
                 time.sleep(1)
                 temp = 1
                 break
         if temp == 1:
             break
     if temp == 0:
-        print("That's not right. The correct answer is...\n")
+        printy("That's not right. The correct answer is...\n")
         for a in range(len(df)-1):
-            print(df[a] + ", ", end="")
-        print(df[len(df)-1])
+            printy(df[a] + ", ")
+        printy(df[len(df)-1], "\n")
         time.sleep(1)
 
 
@@ -59,7 +59,7 @@ while True:
 
 
 
-print("\n\n\n\n\n\n\n\n\n\n")
+printy("\n\n\n\n\n\n\n\n\n\n")
 visited = []
 num = 0
 randInt = 0
