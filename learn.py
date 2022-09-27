@@ -79,14 +79,14 @@ while True:
 
 
 printy("\n\n\n\n\n\n\n\n\n\n")
-visited = []
 num = 0
 randInt = 0
 randList = [0, 0, 0, 0]
 for i in range(3):
-    
+    visited = []
     word = []
     df = []
+    
     for e in range(len(vocab)):
         visited.append(e)
     
