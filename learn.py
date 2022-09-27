@@ -89,7 +89,10 @@ for i in range(3):
     for e in range(len(vocab)):
         visited.append(e)
     
-    while True:
+    for e in range(1, len(vocab) - 1):
+        printer = "\n\nNo. " + str(e) + " of " + str(len(vocab) - 1) + "\n"
+        printy(printer)
+
         num = random.randint(0, len(visited)-1)
         randInt = visited[num]
         if i == 2:
@@ -100,7 +103,7 @@ for i in range(3):
             df = vocab[randInt][1]
         visited.remove(visited[num])
 
-        print("\n")
+        
         printy(toString(word, False))
         
         if i == 0 & len(visited) != 1:
@@ -123,8 +126,6 @@ for i in range(3):
         
         check(response, df)
 
-        if len(visited) == 0:
-            break
         
     printy("Do you want to continue (Y/N)")
     cont = input(": ")
