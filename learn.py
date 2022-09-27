@@ -24,16 +24,17 @@ def check(response, df):
         responseList = response.split(", ")
         for thingy in responseList:
             if thingy.lower() == thing.lower():
-                printy("You got the right answer!!\n")
-                time.sleep(1)
+                printy("You got the right answer!! The full answer is...\n")
+                printy(toString(df, True))
+                time.sleep(1.2)
                 temp = 1
                 break
         if temp == 1:
             break
     if temp == 0:
         printy("That's not right. The correct answer is...\n")
-        printy(toString(df, False))
-        time.sleep(1)
+        printy(toString(df, True))
+        time.sleep(1.2)
 
 def toString(word, t):
     if t:
@@ -103,7 +104,7 @@ for i in range(3):
             df = vocab[randInt][1]
         visited.remove(visited[num])
 
-        
+
         printy(toString(word, False))
         
         if i == 0 & len(visited) != 1:
