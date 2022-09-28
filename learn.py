@@ -60,8 +60,9 @@ def toString(word, t):
 
 
 while True:
-    printy("Choose a set")
+    printy("\nChoose a set")
     fileName = input(": ")
+
 
     try:
         with open(fileName, "r") as a_file:
@@ -81,12 +82,14 @@ totList = []
 for i in range(len(vocab)):
     totList.append(i)
 
-
+printy("Choose a difficulty level (1-3)")
+difficulty = input(": ")
 printy("\n\n\n\n\n\n\n\n\n\n")
 num = 0
 randInt = 0
 visited = []
-for i in range(3):
+i = (int(difficulty)-1)%3
+while i < 3:
     word = []
     df = []
 
@@ -136,3 +139,5 @@ for i in range(3):
     cont = input(": ")
     if cont.lower() == "n":
         break
+    else:
+        i += 1
