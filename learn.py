@@ -93,7 +93,7 @@ for i in range(3):
     visited.clear()
     visited = totList.copy()
     
-    for e in range(1, len(vocab)):
+    for e in range(1, len(vocab)+1):
         printer = "\n\nNo. " + str(e) + " of " + str(len(vocab)) + "\n"
         printy(printer)
 
