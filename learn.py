@@ -28,14 +28,17 @@ def check(response, df):
     if temp >= len(df):
         printy("You got the right answer!!\n")
         time.sleep(1)
+        return 1
     elif temp == 0:
         printy("That's not right. \nThe correct answer is...\n")
         printy(toString(df, True))
         time.sleep(1)
+        return 0
     else:
         printy("You got the right answer!!\nThe full answer is...\n")
         printy(toString(df, True))
         time.sleep(1)
+        return 1
 
 def toString(word, t):
     if t:
@@ -100,7 +103,8 @@ while i < 3:
 
     visited.clear()
     visited = totList.copy()
-    
+    score = 0
+
     for e in range(1, len(vocab)+1):
         printer = "\n\nNo. " + str(e) + " of " + str(len(vocab)) + "\n"
         printy(printer)
@@ -121,12 +125,14 @@ while i < 3:
 
         printy(toString(word, False))
         
-        if i == 0 & len(visited) != 1:
+        if i == 0:
             time.sleep(.06)
             printy("Is it...\n")
             time.sleep(.06)
+            totList.remove(randInt)
             randList = random.sample(totList, k=3)
             randList.append(randInt)
+            totList.append(randInt)
             
             randStart = random.randint(0, 3)
             for a in range(4):
@@ -137,9 +143,9 @@ while i < 3:
         printy("Please input the definition")
         response = input(": ")
         
-        check(response, df)
+        score += check(response, df)
 
-        
+    printy("\nYour final score for difficulty level " + str(i+1) + " is " + str(score) + " out of " + str(len(vocab)) + " \n")
     printy("Do you want to continue (Y/N)")
     cont = input(": ")
     if cont.lower() == "n":
