@@ -11,11 +11,11 @@ def printy(printer):
     for char in printer:
         if char != "\n":
             print(char, end = '', flush = True)
-            time.sleep(.04)
+            time.sleep(.03)
         else:
             print(char, end = '', flush = True)
-            time.sleep(.06)
-    time.sleep(.06)
+            time.sleep(.055)
+    time.sleep(.055)
 
 def check(response, df):
     temp = 0
@@ -24,17 +24,18 @@ def check(response, df):
         responseList = response.split(", ")
         for thingy in responseList:
             if thingy.lower() == thing.lower():
-                printy("You got the right answer!! The full answer is...\n")
-                printy(toString(df, True))
-                time.sleep(1.2)
-                temp = 1
-                break
-        if temp == 1:
-            break
-    if temp == 0:
+                temp += 1
+    if temp >= len(df):
+        printy("You got the right answer!!\n")
+        time.sleep(1)
+    elif temp == 0:
         printy("That's not right. \nThe correct answer is...\n")
         printy(toString(df, True))
-        time.sleep(1.2)
+        time.sleep(1)
+    else:
+        printy("You got the right answer!!\nThe full answer is...\n")
+        printy(toString(df, True))
+        time.sleep(1)
 
 def toString(word, t):
     if t:
@@ -92,8 +93,8 @@ for i in range(3):
     visited.clear()
     visited = totList.copy()
     
-    for e in range(1, len(vocab) - 1):
-        printer = "\n\nNo. " + str(e) + " of " + str(len(vocab) - 1) + "\n"
+    for e in range(1, len(vocab)):
+        printer = "\n\nNo. " + str(e) + " of " + str(len(vocab)) + "\n"
         printy(printer)
 
         num = random.randint(0, len(visited)-1)
@@ -116,7 +117,7 @@ for i in range(3):
             time.sleep(.06)
             printy("Is it...\n")
             time.sleep(.06)
-            randList = random.sample(visited, k=3)
+            randList = random.sample(totList, k=3)
             randList.append(randInt)
             
             randStart = random.randint(0, 3)
