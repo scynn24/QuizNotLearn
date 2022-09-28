@@ -78,9 +78,11 @@ while True:
     except FileNotFoundError:
         printy("That is not a valid file\n")
 
+
 totList = []
 for i in range(len(vocab)):
     totList.append(i)
+
 
 printy("Choose a difficulty level (1-3)")
 difficulty = input(": ")
@@ -89,6 +91,9 @@ num = 0
 randInt = 0
 visited = []
 i = (int(difficulty)-1)%3
+
+
+
 while i < 3:
     word = []
     df = []
