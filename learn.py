@@ -32,7 +32,7 @@ def check(response, df):
         if temp == 1:
             break
     if temp == 0:
-        printy("That's not right. The correct answer is...\n")
+        printy("That's not right. \nThe correct answer is...\n")
         printy(toString(df, True))
         time.sleep(1.2)
 
@@ -76,19 +76,21 @@ while True:
     except FileNotFoundError:
         printy("That is not a valid file\n")
 
+totList = []
+for i in range(len(vocab)):
+    totList.append(i)
 
 
 printy("\n\n\n\n\n\n\n\n\n\n")
 num = 0
 randInt = 0
-randList = [0, 0, 0, 0]
+visited = []
 for i in range(3):
-    visited = []
     word = []
     df = []
-    
-    for e in range(len(vocab)):
-        visited.append(e)
+
+    visited.clear()
+    visited = totList.copy()
     
     for e in range(1, len(vocab) - 1):
         printer = "\n\nNo. " + str(e) + " of " + str(len(vocab) - 1) + "\n"
@@ -96,6 +98,9 @@ for i in range(3):
 
         num = random.randint(0, len(visited)-1)
         randInt = visited[num]
+        randList = []
+
+
         if i == 2:
             word = vocab[randInt][1]
             df = vocab[randInt][0]
@@ -111,10 +116,8 @@ for i in range(3):
             time.sleep(.06)
             printy("Is it...\n")
             time.sleep(.06)
-            randList[0] = randInt
-            for a in range(1, 4):
-                newRand = random.randint(0, len(visited)-1)
-                randList[a] = visited[newRand]
+            randList = random.sample(visited, k=3)
+            randList.append(randInt)
             
             randStart = random.randint(0, 3)
             for a in range(4):
