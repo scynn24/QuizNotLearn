@@ -146,8 +146,8 @@ while i < 3:
         printy("Please input the definition")
         response = input(": ")
         
-        tempScore = check(response, df)
-        if initRep.lower() != "n":
+        tempScore = int(check(response, df))
+        if (initRep.lower() != "n") & (tempScore == 0):
             visited.append(randInt)
         else:
             e += 1
