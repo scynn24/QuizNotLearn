@@ -89,6 +89,8 @@ for i in range(len(vocab)):
 
 printy("Choose a difficulty level (1-3)")
 difficulty = input(": ")
+printy("Build Repetition (Y/N)")
+initRep = input(": ")
 printy("\n\n\n\n\n\n\n\n\n\n")
 num = 0
 randInt = 0
@@ -105,7 +107,8 @@ while i < 3:
     visited = totList.copy()
     score = 0
 
-    for e in range(1, len(vocab)+1):
+    e = 1
+    while e < len(vocab) + 1:
         printer = "\n\nNo. " + str(e) + " of " + str(len(vocab)) + "\n"
         printy(printer)
 
@@ -120,7 +123,7 @@ while i < 3:
         else:
             word = vocab[randInt][0]
             df = vocab[randInt][1]
-        visited.remove(visited[num])
+        visited.remove(randInt)
 
 
         printy(toString(word, False))
@@ -143,7 +146,12 @@ while i < 3:
         printy("Please input the definition")
         response = input(": ")
         
-        score += check(response, df)
+        tempScore = check(response, df)
+        if initRep.lower() != "n":
+            visited.append(randInt)
+        else:
+            e += 1
+        score += tempScore
 
     printy("\nYour final score for difficulty level " + str(i+1) + " is " + str(score) + " out of " + str(len(vocab)) + " \n")
     printy("Do you want to continue (Y/N)")
