@@ -20,7 +20,7 @@ def printy(printer):
 def check(response, df):
     temp = 0
     for thing in df:
-        response = response.replace(" (", ", ").replace(")", "")
+        response = response.replace(" (", ", (, ").replace(")", "")
         responseList = response.split(", ")
         for thingy in responseList:
             if thingy.lower() == thing.lower():
