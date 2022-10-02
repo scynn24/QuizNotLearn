@@ -5,6 +5,7 @@ import re
 vocab = []
 a = 0
 tempWord = []
+charList = [" (", ": ", "; ", "... "]
 
 
 def printy(printer):
@@ -47,11 +48,14 @@ def toString(word, t):
     printer += word[0]
     a = 1
     while a < len(word):
-        if word[a] != "(":
+        if word[a] not in charList:
             printer += ", " + word[a]
-        else:
+        elif word[a] == " (":
             a += 1
             printer += " (" + word[a] + ")"
+        else:
+            a += 1
+            printer += word[a-1] + word[a]
         a += 1
 
             
@@ -60,7 +64,9 @@ def toString(word, t):
 
 
 def lineParse(line):
-    strippedLine = line.strip().replace(" (", ", (, ").replace(")", "")
+    strippedLine = line.strip().replace(")", "")
+    for thing in charList:
+        strippedLine = strippedLine.replace(thing, ", "+ thing + ", ")
     return re.split(", |; ", strippedLine)
 
 
