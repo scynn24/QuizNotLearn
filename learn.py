@@ -20,8 +20,7 @@ def printy(printer):
 def check(response, df):
     temp = 0
     for thing in df:
-        response = response.replace(" (", ", (, ").replace(")", "")
-        responseList = response.split(", ")
+        responseList = lineParse(response)
         for thingy in responseList:
             if thingy.lower() == thing.lower():
                 temp += 1
@@ -60,6 +59,9 @@ def toString(word, t):
     return printer
 
 
+def lineParse(line):
+    strippedLine = line.strip().replace(" (", ", (, ").replace(")", "")
+    return re.split(", |; ", strippedLine)
 
 
 while True:
@@ -70,8 +72,7 @@ while True:
     try:
         with open(fileName, "r") as a_file:
             for line in a_file:
-                strippedLine = line.strip().replace(" (", ", (, ").replace(")", "")
-                splitLine = re.split(", |; ", strippedLine)
+                splitLine = lineParse(line)
                 if a == 0:
                     tempWord = splitLine
                 else:
