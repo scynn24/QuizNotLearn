@@ -5,7 +5,7 @@ import re
 vocab = []
 a = 0
 tempWord = []
-charList = [" (", ": ", "; ", "... "]
+charList = [" (", ": ", "; ", "... ", "..."]
 
 
 def printy(printer):
