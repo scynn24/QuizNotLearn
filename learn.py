@@ -67,7 +67,7 @@ def lineParse(line):
     strippedLine = line.strip().replace(")", "")
     for thing in charList:
         strippedLine = strippedLine.replace(thing, ", "+ thing + ", ")
-    return re.split(", |; ", strippedLine)
+    return re.split(", ", strippedLine)
 
 
 while True:
