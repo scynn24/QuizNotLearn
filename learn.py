@@ -5,7 +5,7 @@ import re
 vocab = []
 a = 0
 tempWord = []
-charList = [" (", ": ", "; ", "... ", "..."]
+charList = [" (", ": ", "; ", "... ", "...", "/"]
 
 
 def printy(printer):
@@ -20,12 +20,15 @@ def printy(printer):
 
 def check(response, df):
     temp = 0
+    total = len(df)
     for thing in df:
         responseList = lineParse(response)
         for thingy in responseList:
             if thingy.lower() == thing.lower():
                 temp += 1
-    if temp >= len(df):
+            elif thing in charList:
+                total = total - 1
+    if temp >= total:
         printy("You got the right answer!!\n")
         time.sleep(1)
         return 1
@@ -103,6 +106,7 @@ num = 0
 randInt = 0
 visited = []
 i = (int(difficulty)-1)%3
+
 
 
 
