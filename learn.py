@@ -113,6 +113,7 @@ i = (int(difficulty)-1)%3
 while i < 3:
     word = []
     df = []
+    totNum = len(vocab)
 
     visited.clear()
     visited = totList.copy()
@@ -160,11 +161,12 @@ while i < 3:
         tempScore = int(check(response, df))
         if (initRep.lower() != "n") & (tempScore == 0):
             visited.append(randInt)
+            totNum += 1
         else:
             e += 1
         score += tempScore
 
-    printy("\nYour final score for difficulty level " + str(i+1) + " is " + str(score) + " out of " + str(len(vocab)) + " \n")
+    printy("\nYour final score for difficulty level " + str(i+1) + " is " + str(score) + " out of " + str(totNum) + " \n")
     printy("Do you want to continue (Y/N)")
     cont = input(": ")
     if cont.lower() == "n":
