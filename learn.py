@@ -2,7 +2,10 @@ from ast import Break
 import random
 import time
 import re
+
+from numpy import double
 vocab = []
+timeSleep = .03
 a = 0
 tempWord = []
 charList = [" (", ": ", "; ", "... ", "...", "/"]
@@ -12,11 +15,11 @@ def printy(printer):
     for char in printer:
         if char != "\n":
             print(char, end = '', flush = True)
-            time.sleep(.03)
+            time.sleep(timeSleep)
         else:
             print(char, end = '', flush = True)
-            time.sleep(.055)
-    time.sleep(.055)
+            time.sleep(timeSleep*2-.005)
+    time.sleep(timeSleep*2-.005)
 
 def check(response, df):
     temp = 0
@@ -30,17 +33,17 @@ def check(response, df):
                 total = total - 1
     if temp >= total:
         printy("You got the right answer!!\n")
-        time.sleep(1)
+        time.sleep(timeSleep*33)
         return 1
     elif temp == 0:
         printy("That's not right. \nThe correct answer is...\n")
         printy(toString(df, True))
-        time.sleep(1)
+        time.sleep(timeSleep*33)
         return 0
     else:
         printy("You got the right answer!!\nThe full answer is...\n")
         printy(toString(df, True))
-        time.sleep(1)
+        time.sleep(timeSleep*33)
         return 1
 
 def toString(word, t):
@@ -105,8 +108,15 @@ printy("\n\n\n\n\n\n\n\n\n\n")
 num = 0
 randInt = 0
 visited = []
-i = (int(difficulty)-1)%3
-
+try:
+    i = (int(difficulty)-1)%3
+except:
+    primi, t = difficulty.split(" ")
+    i = (int(primi)-1)%3
+    if t.lower() == "q":
+        timeSleep = .016
+    else:
+        timeSleep = .03
 
 
 
@@ -141,9 +151,9 @@ while i < 3:
         printy(toString(word, False))
         
         if i == 0:
-            time.sleep(.06)
+            time.sleep(timeSleep*2)
             printy("Is it...\n")
-            time.sleep(.06)
+            time.sleep(timeSleep*2)
             totList.remove(randInt)
             randList = random.sample(totList, k=3)
             randList.append(randInt)
